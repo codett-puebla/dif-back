@@ -1,0 +1,23 @@
+package com.devnous.erp.Repository;
+
+import com.devnous.erp.Entity.PurchaseHeader;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.io.Serializable;
+import java.util.List;
+
+@Repository("purchaseRepository")
+public interface PurchaseRepository extends JpaRepository<PurchaseHeader, Serializable> {
+    PurchaseHeader findById(int id);
+
+    List<PurchaseHeader> findByStatusAndIdCompany(int status, int idCompany);
+
+    PurchaseHeader findByIdAndStatus(int id, int status);
+
+    @Query(value = "Select * from PurchaseHeader as p where p.folio LIKE  '%-%-%' AND p.series = ?1 AND p.idCompany = ?2 ORDER BY p.id DESC LIMIT 1", nativeQuery = true)
+    PurchaseHeader findTopBySeriesAndIdCompany(String series, int idCompany);
+
+    PurchaseHeader findByFolioAndSeriesAndIdCompany(String folio, String series, int idCompany);
+}
