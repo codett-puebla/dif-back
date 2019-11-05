@@ -11,5 +11,5 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Serializable> {
     Client findById(int id);
 
-    List<Client> findByStatusAndIdCompany(int status, int idCompany);
+    List<Client> findByStatus(int status);
 }

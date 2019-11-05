@@ -10,9 +10,9 @@ public interface OrderService {
 
     Order readOrder(int id) throws ResourceNotFoundException;
 
-    List<Order> readAllActiveOrder(int idCompany);
+    List<Order> readAllActiveOrder();
 
-    List<Order> readAllRemovedOrder(int idCompany);
+    List<Order> readAllRemovedOrder();
 
     void updateOrder(Order order) throws ResourceNotFoundException;
 

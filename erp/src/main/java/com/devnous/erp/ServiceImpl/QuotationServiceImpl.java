@@ -38,14 +38,14 @@ public class QuotationServiceImpl implements QuotationService {
         if (quotation.getFolio() == null || quotation.getFolio().isEmpty()) {
             String lastFolio = ""; //we need to obtain the last folio of a series.
             try {
-                lastFolio = quotationRepository.findTopBySeriesAndIdCompany(quotation.getSeries(), quotation.getIdCompany()).getFolio();
+                lastFolio = quotationRepository.findTopBySeries(quotation.getSeries()).getFolio();
             } catch (Exception e) {
                 //nothing to do
                 System.out.println(e);
             }
             quotation.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        Quotation exist = quotationRepository.findByFolioAndSeriesAndIdCompany(quotation.getFolio(), quotation.getSeries(), quotation.getIdCompany());
+        Quotation exist = quotationRepository.findByFolioAndSeries(quotation.getFolio(), quotation.getSeries());
         if (exist == null) {
             double total = 0;
             for (QuotationDetail quotationDetail : quotation.getQuotationDetails()) {
@@ -71,13 +71,13 @@ public class QuotationServiceImpl implements QuotationService {
     }
 
     @Override
-    public List<Quotation> readAllActiveQuotation(int idCompany) {
-        return quotationRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Quotation> readAllActiveQuotations() {
+        return quotationRepository.findByStatus(1);
     }
 
     @Override
-    public List<Quotation> readAllRemovedQuotation(int idCompany) {
-        return quotationRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Quotation> readAllRemovedQuotations() {
+        return quotationRepository.findByStatus(0);
     }
 
     @Override
@@ -163,7 +163,6 @@ public class QuotationServiceImpl implements QuotationService {
                     if (idQuotation != idNextQuotation || cont == quotationDetails.size()) { //hacemos un cambio si el Id de la quotation es diferente
                         purchaseHeader.setPurchaseDetails(purchaseDetails);
                         purchaseHeader.setStatus(1);
-                        purchaseHeader.setIdCompany(order.getIdCompany());
                         purchaseHeader.setFolio("");
                         purchaseHeader.setSeries("C");
                         purchaseHeader.setProvider(quotationDetail.getQuotation().getProvider());
@@ -179,7 +178,6 @@ public class QuotationServiceImpl implements QuotationService {
                 if (order.getQuotations().size() == 1) {
                     PurchaseHeader purchaseHeader = new PurchaseHeader();
                     purchaseHeader.setStatus(1);
-                    purchaseHeader.setIdCompany(order.getIdCompany());
                     purchaseHeader.setFolio("");
                     purchaseHeader.setSeries("C");
                     purchaseHeader.setProvider(order.getQuotations().get(0).getProvider());

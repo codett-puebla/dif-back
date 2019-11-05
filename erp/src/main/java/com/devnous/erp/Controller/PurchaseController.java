@@ -18,15 +18,15 @@ public class PurchaseController {
     @Qualifier("purchaseService")
     PurchaseService purchaseService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<PurchaseHeader>> getAllActivePurchaseHeaders(@PathVariable("idCompany") int idCompany) {
-        List<PurchaseHeader> purchases = purchaseService.readAllActivePurchaseHeader(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<PurchaseHeader>> getAllActivePurchaseHeaders() {
+        List<PurchaseHeader> purchases = purchaseService.readAllActivePurchaseHeader();
         return new ResponseEntity<>(purchases, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<PurchaseHeader>> getAllRemovedPurchaseHeaders(@PathVariable("idCompany") int idCompany) {
-        List<PurchaseHeader> purchases = purchaseService.readAllRemovedPurchaseHeader(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<PurchaseHeader>> getAllRemovedPurchaseHeaders() {
+        List<PurchaseHeader> purchases = purchaseService.readAllRemovedPurchaseHeader();
         return new ResponseEntity<>(purchases, HttpStatus.OK);
     }
 

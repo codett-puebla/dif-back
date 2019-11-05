@@ -26,9 +26,6 @@ public class Provider implements Serializable {
     private String rfc;
     @NotNull
     @Column
-    private int idCompany;
-    @NotNull
-    @Column
     private int status;
 
     public int getId() {
@@ -77,14 +74,6 @@ public class Provider implements Serializable {
 
     public void setRfc(String rfc) {
         this.rfc = rfc;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

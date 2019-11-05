@@ -38,13 +38,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> readAllActiveItem(int idCompany) {
-        return itemRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Item> readAllActiveItem() {
+        return itemRepository.findByStatus(1);
     }
 
     @Override
-    public List<Item> readAllRemovedItem(int idCompany) {
-        return itemRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Item> readAllRemovedItem() {
+        return itemRepository.findByStatus(0);
 
     }
 
@@ -74,8 +74,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> getItemsByWarehouse(int idCompany, int idWarehouse) {
-        return itemRepository.findByStatusAndIdCompanyAndInventoriesWarehouseId(1, idCompany, idWarehouse);
+    public List<Item> getItemsByWarehouse(int idWarehouse) {
+        return itemRepository.findByStatusAndInventoriesWarehouseId(1, idWarehouse);
     }
 
     @Override //validate is the quantity is enough

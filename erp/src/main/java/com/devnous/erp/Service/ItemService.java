@@ -10,9 +10,9 @@ public interface ItemService {
 
     Item readItem(int id) throws ResourceNotFoundException;
 
-    List<Item> readAllActiveItem(int idCompany);
+    List<Item> readAllActiveItem();
 
-    List<Item> readAllRemovedItem(int idCompany);
+    List<Item> readAllRemovedItem();
 
     void updateItem(Item item) throws ResourceNotFoundException;
 
@@ -22,5 +22,5 @@ public interface ItemService {
 
     boolean isAvailableQuantity(int idItem, int quantity);
 
-    List<Item> getItemsByWarehouse(int idCompany, int idWarehouse);
+    List<Item> getItemsByWarehouse(int idWarehouse);
 }

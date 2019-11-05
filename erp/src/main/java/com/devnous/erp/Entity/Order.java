@@ -28,9 +28,6 @@ public class Order implements Serializable {
     private Date date;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
     @Column
     @NotNull
@@ -73,14 +70,6 @@ public class Order implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

@@ -24,9 +24,6 @@ public class Warehouse implements Serializable {
     private Integer accountingAccount;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
 
     public int getId() {
@@ -67,14 +64,6 @@ public class Warehouse implements Serializable {
 
     public void setAccountingAccount(Integer accountingAccount) {
         this.accountingAccount = accountingAccount;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

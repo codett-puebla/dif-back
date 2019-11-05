@@ -15,10 +15,10 @@ public interface EntryRepository extends JpaRepository<Entry, Serializable> {
 
     Entry findByIdAndStatus(int id, int status);
 
-    List<Entry> findByStatusAndIdCompany(int status, int idCompany);
+    List<Entry> findByStatus(int status);
 
-    @Query(value = "Select * from Entry as e where e.folio LIKE  '%-%-%' AND e.series = ?1 AND e.idCompany = ?2 ORDER BY e.id DESC LIMIT 1", nativeQuery = true)
-    Entry findTopBySeriesAndIdCompany(String series, int idCompany);
+    @Query(value = "Select * from Entry as e where e.folio LIKE  '%-%-%' AND e.series = ?1 ORDER BY e.id DESC LIMIT 1", nativeQuery = true)
+    Entry findTopBySeries(String series);
 
-    Entry findByFolioAndSeriesAndIdCompany(String folio, String series, int idCompany);
+    Entry findByFolioAndSeries(String folio, String series);
 }

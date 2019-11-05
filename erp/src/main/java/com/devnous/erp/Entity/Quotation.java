@@ -31,9 +31,6 @@ public class Quotation implements Serializable {
     private Double totalPrice;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
     @Column
     private int idUser;
@@ -63,14 +60,6 @@ public class Quotation implements Serializable {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

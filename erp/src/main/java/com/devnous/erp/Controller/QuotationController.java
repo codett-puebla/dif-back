@@ -19,15 +19,15 @@ public class QuotationController {
     @Qualifier("quotationService")
     QuotationService quotationService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Quotation>> getAllActiveQuotations(@PathVariable("idCompany") int idCompany) {
-        List<Quotation> quotations = quotationService.readAllActiveQuotation(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Quotation>> getAllActiveQuotations() {
+        List<Quotation> quotations = quotationService.readAllActiveQuotations();
         return new ResponseEntity<>(quotations, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Quotation>> getAllRemovedQuotations(@PathVariable("idCompany") int idCompany) {
-        List<Quotation> quotations = quotationService.readAllRemovedQuotation(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Quotation>> getAllRemovedQuotations() {
+        List<Quotation> quotations = quotationService.readAllRemovedQuotations();
         return new ResponseEntity<>(quotations, HttpStatus.OK);
     }
 

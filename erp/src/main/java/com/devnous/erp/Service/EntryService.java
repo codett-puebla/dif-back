@@ -11,9 +11,9 @@ public interface EntryService {
 
     Entry readEntrys(int id) throws ResourceNotFoundException;
 
-    List<Entry> readAllActiveEntrys(int idCompany);
+    List<Entry> readAllActiveEntrys();
 
-    List<Entry> readAllRemovedEntrys(int idCompany);
+    List<Entry> readAllRemovedEntrys();
 
     void updateEntrys(Entry entry) throws ResourceNotFoundException;
 

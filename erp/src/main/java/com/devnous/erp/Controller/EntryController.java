@@ -18,15 +18,15 @@ public class EntryController {
     @Qualifier("entryService")
     EntryService entryService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Entry>> getAllActiveEntrys(@PathVariable("idCompany") int idCompany) {
-        List<Entry> entrys = entryService.readAllActiveEntrys(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Entry>> getAllActiveEntrys() {
+        List<Entry> entrys = entryService.readAllActiveEntrys();
         return new ResponseEntity<>(entrys, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Entry>> getAllRemovedEntrys(@PathVariable("idCompany") int idCompany) {
-        List<Entry> entrys = entryService.readAllRemovedEntrys(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Entry>> getAllRemovedEntrys() {
+        List<Entry> entrys = entryService.readAllRemovedEntrys();
         return new ResponseEntity<>(entrys, HttpStatus.OK);
     }
 

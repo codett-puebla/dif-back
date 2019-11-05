@@ -12,10 +12,10 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Serializable> {
     Order findById(int id);
 
-    List<Order> findByStatusAndIdCompany(int status, int idCompany);
+    List<Order> findByStatus(int status);
 
-    @Query(value = "Select * from deverp.Order as o where o.folio LIKE  '%-%-%' AND o.series = ?1 AND o.idCompany = ?2 ORDER BY o.id DESC LIMIT 1", nativeQuery = true)
-    Order findTopBySeriesAndIdCompany(String series, int idCompany);
+    @Query(value = "Select * from deverp.Order as o where o.folio LIKE  '%-%-%' AND o.series = ?1 ORDER BY o.id DESC LIMIT 1", nativeQuery = true)
+    Order findTopBySeries(String series);
 
-    Order findByFolioAndSeriesAndIdCompany(String folio, String series, int idCompany);
+    Order findByFolioAndSeries(String folio, String series);
 }

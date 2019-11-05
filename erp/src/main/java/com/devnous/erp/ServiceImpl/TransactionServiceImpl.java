@@ -32,13 +32,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> readAllActiveTransaction(int idCompany) {
-        return transactionRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Transaction> readAllActiveTransaction() {
+        return transactionRepository.findByStatus(1);
     }
 
     @Override
-    public List<Transaction> readAllRemovedTransaction(int idCompany) {
-        return transactionRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Transaction> readAllRemovedTransaction() {
+        return transactionRepository.findByStatus(0);
     }
 
     @Override

@@ -10,9 +10,9 @@ public interface ClientService {
 
     Client readClient(int id) throws ResourceNotFoundException;
 
-    List<Client> readAllActiveClient(int idCompany);
+    List<Client> readAllActiveClient();
 
-    List<Client> readAllRemovedClient(int idCompany);
+    List<Client> readAllRemovedClient();
 
     void updateClient(Client client) throws ResourceNotFoundException;
 

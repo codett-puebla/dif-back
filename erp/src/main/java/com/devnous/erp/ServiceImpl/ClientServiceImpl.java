@@ -32,13 +32,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> readAllActiveClient(int idCompany) {
-        return clientRepository.findByStatusAndIdCompany(1,idCompany);
+    public List<Client> readAllActiveClient() {
+        return clientRepository.findByStatus(1);
     }
 
     @Override
-    public List<Client> readAllRemovedClient(int idCompany) {
-        return clientRepository.findByStatusAndIdCompany(0,idCompany);
+    public List<Client> readAllRemovedClient() {
+        return clientRepository.findByStatus(0);
     }
 
     @Override

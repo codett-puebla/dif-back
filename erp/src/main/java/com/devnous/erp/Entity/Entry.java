@@ -32,9 +32,6 @@ public class Entry implements Serializable {
     private int idUser;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
 
     @ManyToOne
@@ -83,14 +80,6 @@ public class Entry implements Serializable {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

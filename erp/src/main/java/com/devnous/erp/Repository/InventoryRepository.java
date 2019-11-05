@@ -11,7 +11,7 @@ import java.util.List;
 public interface InventoryRepository extends JpaRepository<Inventory, Serializable>{
     Inventory findById(int id);
 
-    List<Inventory> findByStatusAndIdCompany(int status, int idCompany);
+    List<Inventory> findByStatus(int status);
 
     List<Inventory> findByItemId(int id);
 

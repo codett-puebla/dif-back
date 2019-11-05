@@ -32,13 +32,13 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public List<Inventory> readAllActiveInventory(int idCompany) {
-        return inventoryRepository.findByStatusAndIdCompany(1,idCompany);
+    public List<Inventory> readAllActiveInventory() {
+        return inventoryRepository.findByStatus(1);
     }
 
     @Override
-    public List<Inventory> readAllRemovedInventory(int idCompany) {
-        return inventoryRepository.findByStatusAndIdCompany(0,idCompany);
+    public List<Inventory> readAllRemovedInventory() {
+        return inventoryRepository.findByStatus(0);
     }
 
 

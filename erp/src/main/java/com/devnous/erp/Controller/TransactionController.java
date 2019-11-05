@@ -18,15 +18,15 @@ public class TransactionController {
     @Qualifier("transactionService")
     TransactionService transactionService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Transaction>> getAllActiveTransactions(@PathVariable("idCompany") int idCompany) {
-        List<Transaction> transactions = transactionService.readAllActiveTransaction(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Transaction>> getAllActiveTransactions() {
+        List<Transaction> transactions = transactionService.readAllActiveTransaction();
         return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Transaction>> getAllRemovedTransactions(@PathVariable("idCompany") int idCompany) {
-        List<Transaction> transactions = transactionService.readAllRemovedTransaction(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Transaction>> getAllRemovedTransactions() {
+        List<Transaction> transactions = transactionService.readAllRemovedTransaction();
         return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
 

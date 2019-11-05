@@ -19,15 +19,15 @@ public class DeparturesController {
     @Qualifier("departuresService")
     DeparturesService departuresService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Departures>> getAllActiveDeparturess(@PathVariable("idCompany") int idCompany) {
-        List<Departures> departures = departuresService.readAllActiveDepartures(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Departures>> getAllActiveDeparturess() {
+        List<Departures> departures = departuresService.readAllActiveDepartures();
         return new ResponseEntity<>(departures, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Departures>> getAllRemovedDeparturess(@PathVariable("idCompany") int idCompany) {
-        List<Departures> departures = departuresService.readAllRemovedDepartures(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Departures>> getAllRemovedDeparturess() {
+        List<Departures> departures = departuresService.readAllRemovedDepartures();
         return new ResponseEntity<>(departures, HttpStatus.OK);
     }
 

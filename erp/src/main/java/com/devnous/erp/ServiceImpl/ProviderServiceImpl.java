@@ -32,13 +32,13 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
     @Override
-    public List<Provider> readAllActiveProvider(int idCompany) {
-        return providerRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Provider> readAllActiveProvider() {
+        return providerRepository.findByStatus(1);
     }
 
     @Override
-    public List<Provider> readAllRemovedProvider(int idCompany) {
-        return providerRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Provider> readAllRemovedProvider() {
+        return providerRepository.findByStatus(0);
 
     }
 

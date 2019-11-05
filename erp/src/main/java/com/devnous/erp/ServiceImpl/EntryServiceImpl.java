@@ -45,14 +45,14 @@ public class EntryServiceImpl implements EntryService {
         if (entry.getFolio() == null || entry.getFolio().isEmpty()) {
             String lastFolio = ""; //we need to obtain the last folio of a series.
             try {
-                lastFolio = entryRepository.findTopBySeriesAndIdCompany(entry.getSeries(), entry.getIdCompany()).getFolio();
+                lastFolio = entryRepository.findTopBySeries(entry.getSeries()).getFolio();
             } catch (Exception e) {
                 //nothing to do
                 System.out.println(e);
             }
             entry.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        Entry exist = entryRepository.findByFolioAndSeriesAndIdCompany(entry.getFolio(), entry.getSeries(), entry.getIdCompany());
+        Entry exist = entryRepository.findByFolioAndSeries(entry.getFolio(), entry.getSeries());
         if (exist == null) {
             entry.setDate(new Date(System.currentTimeMillis()));
             entry.setStatus(1);
@@ -108,13 +108,13 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public List<Entry> readAllActiveEntrys(int idCompany) {
-        return entryRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Entry> readAllActiveEntrys() {
+        return entryRepository.findByStatus(1);
     }
 
     @Override
-    public List<Entry> readAllRemovedEntrys(int idCompany) {
-        return entryRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Entry> readAllRemovedEntrys() {
+        return entryRepository.findByStatus(0);
     }
 
     @Override
@@ -163,7 +163,6 @@ public class EntryServiceImpl implements EntryService {
         Transaction transaction;
         transaction = new Transaction();
         transaction.setStatus(1);
-        transaction.setIdCompany(entry.getIdCompany());
         transaction.setIdTransaction(entry.getId());
         transaction.setItem(entryDetail.getItem());
         transaction.setWarehouse(entry.getWarehouse());

@@ -46,9 +46,6 @@ public class Item implements Serializable {
     private int saleAmount;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
 
     @OneToMany(mappedBy = "item", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
@@ -164,14 +161,6 @@ public class Item implements Serializable {
 
     public void setSaleAmount(int saleAmount) {
         this.saleAmount = saleAmount;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

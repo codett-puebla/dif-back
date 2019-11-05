@@ -10,9 +10,9 @@ public interface WarehouseService {
 
     Warehouse readWarehouse(int id) throws ResourceNotFoundException;
 
-    List<Warehouse> readAllActiveWarehouse(int idCompany);
+    List<Warehouse> readAllActiveWarehouse();
 
-    List<Warehouse> readAllRemovedWarehouse(int idCompany);
+    List<Warehouse> readAllRemovedWarehouse();
 
     void updateWarehouse(Warehouse warehouse) throws ResourceNotFoundException;
 

@@ -10,9 +10,9 @@ public interface StaffService {
 
     Staff readStaff(int id) throws ResourceNotFoundException;
 
-    List<Staff> readAllActiveStaff(int idCompany);
+    List<Staff> readAllActiveStaff();
 
-    List<Staff> readAllRemovedStaff(int idCompany);
+    List<Staff> readAllRemovedStaff();
 
     void updateStaff(Staff staff) throws ResourceNotFoundException;
 

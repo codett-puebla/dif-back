@@ -37,9 +37,6 @@ public class SalesHeader implements Serializable {
     private Double discount;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
     @Column
     @NotNull
@@ -112,14 +109,6 @@ public class SalesHeader implements Serializable {
 
     public void setDiscount(Double discount) {
         this.discount = discount;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

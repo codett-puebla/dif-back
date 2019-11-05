@@ -20,9 +20,6 @@ public class Inventory implements Serializable {
     @Column
     @NotNull
     private int status;
-    @Column
-    @NotNull
-    private int idCompany;
     @ManyToOne
     @JoinColumn(name = "idItem", referencedColumnName = "id")
     @NotNull
@@ -72,13 +69,5 @@ public class Inventory implements Serializable {
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 }

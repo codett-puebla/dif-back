@@ -11,5 +11,5 @@ import java.util.List;
 public interface WarehouseRepository extends JpaRepository<Warehouse, Serializable> {
     Warehouse findById(int id);
 
-    List<Warehouse> findByStatusAndIdCompany(int status, int idCompany);
+    List<Warehouse> findByStatus(int status);
 }

@@ -45,13 +45,13 @@ public class WarehouseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public List<Warehouse> readAllActiveWarehouse(int idCompany) {
-        return warehouseRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Warehouse> readAllActiveWarehouse() {
+        return warehouseRepository.findByStatus(1);
     }
 
     @Override
-    public List<Warehouse> readAllRemovedWarehouse(int idCompany) {
-        return warehouseRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Warehouse> readAllRemovedWarehouse() {
+        return warehouseRepository.findByStatus(0);
 
     }
 
@@ -109,7 +109,6 @@ public class WarehouseServiceImpl implements WarehouseService {
         transaction.setItem(inventory.getItem());
         transaction.setWarehouse(inventory.getWarehouse());
         transaction.setIdTransaction(inventory.getId());
-        transaction.setIdCompany(inventory.getIdCompany());
         transaction.setStatus(Transaction.ACTIVO);
         transaction.setMovementStatus(Transaction.ACTIVO);
         transactionRepository.save(transaction);

@@ -46,14 +46,14 @@ public class PurchaseServiceImpl implements PurchaseService {
         if (purchaseHeader.getFolio() == null || purchaseHeader.getFolio().isEmpty()) {
             String lastFolio = ""; //we need to obtain the last folio of a series.
             try {
-                lastFolio = purchaseRepository.findTopBySeriesAndIdCompany(purchaseHeader.getSeries(), purchaseHeader.getIdCompany()).getFolio();
+                lastFolio = purchaseRepository.findTopBySeries(purchaseHeader.getSeries()).getFolio();
             } catch (Exception e) {
                 //nothing to do
                 System.out.println(e);
             }
             purchaseHeader.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        PurchaseHeader exist = purchaseRepository.findByFolioAndSeriesAndIdCompany(purchaseHeader.getFolio(), purchaseHeader.getSeries(), purchaseHeader.getIdCompany());
+        PurchaseHeader exist = purchaseRepository.findByFolioAndSeries(purchaseHeader.getFolio(), purchaseHeader.getSeries());
         if (exist == null) {
             purchaseHeader.setDate(new Date(System.currentTimeMillis()));
             purchaseHeader.setStatus(1);
@@ -116,13 +116,13 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public List<PurchaseHeader> readAllActivePurchaseHeader(int idCompany) {
-        return purchaseRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<PurchaseHeader> readAllActivePurchaseHeader() {
+        return purchaseRepository.findByStatus(1);
     }
 
     @Override
-    public List<PurchaseHeader> readAllRemovedPurchaseHeader(int idCompany) {
-        return purchaseRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<PurchaseHeader> readAllRemovedPurchaseHeader() {
+        return purchaseRepository.findByStatus(0);
     }
 
     @Override
@@ -171,7 +171,6 @@ public class PurchaseServiceImpl implements PurchaseService {
         Transaction transaction;
         transaction = new Transaction();
         transaction.setStatus(1);
-        transaction.setIdCompany(purchaseHeader.getIdCompany());
         transaction.setIdTransaction(purchaseHeader.getId());
         transaction.setItem(purchaseDetail.getItem());
         transaction.setWarehouse(purchaseHeader.getWarehouse());

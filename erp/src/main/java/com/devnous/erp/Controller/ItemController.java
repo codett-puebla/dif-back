@@ -18,15 +18,15 @@ public class ItemController {
     @Qualifier("itemService")
     ItemService itemService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Item>> getAllActiveItems(@PathVariable("idCompany") int idCompany) {
-        List<Item> items = itemService.readAllActiveItem(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Item>> getAllActiveItems() {
+        List<Item> items = itemService.readAllActiveItem();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Item>> getAllRemovedItems(@PathVariable("idCompany") int idCompany) {
-        List<Item> items = itemService.readAllRemovedItem(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Item>> getAllRemovedItems() {
+        List<Item> items = itemService.readAllRemovedItem();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
@@ -60,9 +60,9 @@ public class ItemController {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @GetMapping("company={idCompany}")
-    public ResponseEntity<List<Item>> getAllActiveItems(@PathVariable("idCompany") int idCompany,@RequestParam("idWarehouse")int idWarehouse) {
-        List<Item> items = itemService.getItemsByWarehouse(idCompany,idWarehouse);
+    @GetMapping("/getAllItemsActive")
+    public ResponseEntity<List<Item>> getAllActiveItems(@RequestParam("idWarehouse")int idWarehouse) {
+        List<Item> items = itemService.getItemsByWarehouse(idWarehouse);
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 

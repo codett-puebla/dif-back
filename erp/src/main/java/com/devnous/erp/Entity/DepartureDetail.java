@@ -19,9 +19,6 @@ public class DepartureDetail implements Serializable {
     private Integer quantity;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
 
     // relaciones y fk
@@ -46,14 +43,6 @@ public class DepartureDetail implements Serializable {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

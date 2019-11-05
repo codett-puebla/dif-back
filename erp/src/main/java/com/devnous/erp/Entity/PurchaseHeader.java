@@ -36,9 +36,6 @@ public class PurchaseHeader implements Serializable {
     private Integer idXML;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
     @Column
     @NotNull
@@ -117,15 +114,6 @@ public class PurchaseHeader implements Serializable {
     public void setIdXML(Integer idXML) {
         this.idXML = idXML;
     }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
-    }
-
     public int getStatus() {
         return status;
     }

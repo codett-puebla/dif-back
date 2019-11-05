@@ -10,9 +10,9 @@ public interface DeparturesService {
 
     Departures readDepartures(int id) throws ResourceNotFoundException;
 
-    List<Departures> readAllActiveDepartures(int idCompany);
+    List<Departures> readAllActiveDepartures();
 
-    List<Departures> readAllRemovedDepartures(int idCompany);
+    List<Departures> readAllRemovedDepartures();
 
     void updateDepartures(Departures departures) throws ResourceNotFoundException;
 

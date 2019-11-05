@@ -11,5 +11,5 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction, Serializable> {
     Transaction findById(int id);
 
-    List<Transaction> findByStatusAndIdCompany(int status, int idCompany);
+    List<Transaction> findByStatus(int status);
 }

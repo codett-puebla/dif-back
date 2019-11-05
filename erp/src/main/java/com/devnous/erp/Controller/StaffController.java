@@ -18,15 +18,15 @@ public class StaffController {
     @Qualifier("staffService")
     StaffService staffService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Staff>> getAllActiveStaffs(@PathVariable("idCompany") int idCompany) {
-        List<Staff> staffs = staffService.readAllActiveStaff(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Staff>> getAllActiveStaffs() {
+        List<Staff> staffs = staffService.readAllActiveStaff();
         return new ResponseEntity<>(staffs, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Staff>> getAllRemovedStaffs(@PathVariable("idCompany") int idCompany) {
-        List<Staff> staffs = staffService.readAllRemovedStaff(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Staff>> getAllRemovedStaffs() {
+        List<Staff> staffs = staffService.readAllRemovedStaff();
         return new ResponseEntity<>(staffs, HttpStatus.OK);
     }
 

@@ -11,5 +11,5 @@ import java.util.List;
 public interface ProviderRepository extends JpaRepository<Provider, Serializable> {
     Provider findById(int id);
 
-    List<Provider> findByStatusAndIdCompany(int status, int idCompany);
+    List<Provider> findByStatus(int status);
 }

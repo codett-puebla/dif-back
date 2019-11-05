@@ -10,9 +10,9 @@ public interface InventoryService {
 
     Inventory readInventory(int id) throws ResourceNotFoundException;
 
-    List<Inventory> readAllActiveInventory(int idCompany);
+    List<Inventory> readAllActiveInventory();
 
-    List<Inventory> readAllRemovedInventory(int idCompany);
+    List<Inventory> readAllRemovedInventory();
 
     void updateInventory(Inventory inventory) throws ResourceNotFoundException;
 

@@ -10,9 +10,9 @@ public interface PurchaseService {
 
     PurchaseHeader readPurchaseHeader(int id) throws ResourceNotFoundException;
 
-    List<PurchaseHeader> readAllActivePurchaseHeader(int idCompany);
+    List<PurchaseHeader> readAllActivePurchaseHeader();
 
-    List<PurchaseHeader> readAllRemovedPurchaseHeader(int idCompany);
+    List<PurchaseHeader> readAllRemovedPurchaseHeader();
 
     void updatePurchaseHeader(PurchaseHeader purchaseHeader) throws ResourceNotFoundException;
 

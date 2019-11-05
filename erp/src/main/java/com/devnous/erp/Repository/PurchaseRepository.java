@@ -12,12 +12,12 @@ import java.util.List;
 public interface PurchaseRepository extends JpaRepository<PurchaseHeader, Serializable> {
     PurchaseHeader findById(int id);
 
-    List<PurchaseHeader> findByStatusAndIdCompany(int status, int idCompany);
+    List<PurchaseHeader> findByStatus(int status);
 
     PurchaseHeader findByIdAndStatus(int id, int status);
 
-    @Query(value = "Select * from PurchaseHeader as p where p.folio LIKE  '%-%-%' AND p.series = ?1 AND p.idCompany = ?2 ORDER BY p.id DESC LIMIT 1", nativeQuery = true)
-    PurchaseHeader findTopBySeriesAndIdCompany(String series, int idCompany);
+    @Query(value = "Select * from PurchaseHeader as p where p.folio LIKE  '%-%-%' AND p.series = ?1 ORDER BY p.id DESC LIMIT 1", nativeQuery = true)
+    PurchaseHeader findTopBySeries(String series);
 
-    PurchaseHeader findByFolioAndSeriesAndIdCompany(String folio, String series, int idCompany);
+    PurchaseHeader findByFolioAndSeries(String folio, String series);
 }

@@ -45,14 +45,14 @@ public class DeparturesServiceImpl implements DeparturesService {
         if (departures.getFolio() == null || departures.getFolio().isEmpty()) {
             String lastFolio = ""; //we need to obtain the last folio of a series.
             try {
-                lastFolio = departuresRepository.findTopBySeriesAndIdCompany(departures.getSeries(), departures.getIdCompany()).getFolio();
+                lastFolio = departuresRepository.findTopBySeries(departures.getSeries()).getFolio();
             } catch (Exception e) {
                 //nothing to do
                 System.out.println(e);
             }
             departures.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        Departures exist = departuresRepository.findByFolioAndSeriesAndIdCompany(departures.getFolio(), departures.getSeries(), departures.getIdCompany());
+        Departures exist = departuresRepository.findByFolioAndSeries(departures.getFolio(), departures.getSeries());
         if (exist == null) {
             departures.setDate(new Date(System.currentTimeMillis()));
             departures.setStatus(1);
@@ -107,13 +107,13 @@ public class DeparturesServiceImpl implements DeparturesService {
     }
 
     @Override
-    public List<Departures> readAllActiveDepartures(int idCompany) {
-        return departuresRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Departures> readAllActiveDepartures() {
+        return departuresRepository.findByStatus(1);
     }
 
     @Override
-    public List<Departures> readAllRemovedDepartures(int idCompany) {
-        return departuresRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Departures> readAllRemovedDepartures() {
+        return departuresRepository.findByStatus(0);
     }
 
     @Override
@@ -162,7 +162,6 @@ public class DeparturesServiceImpl implements DeparturesService {
         Transaction transaction;
         transaction = new Transaction();
         transaction.setStatus(1);
-        transaction.setIdCompany(departure.getIdCompany());
         transaction.setIdTransaction(departure.getId());
         transaction.setItem(departureDetail.getItem());
         transaction.setWarehouse(departure.getWarehouse());

@@ -11,7 +11,7 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Serializable> {
     Item findById(int id);
 
-    List<Item> findByStatusAndIdCompany(int status, int idCompany);
+    List<Item> findByStatus(int status);
 
-    List<Item> findByStatusAndIdCompanyAndInventoriesWarehouseId(int status, int idCompany, int idWarehouse);
+    List<Item> findByStatusAndInventoriesWarehouseId(int status, int idWarehouse);
 }

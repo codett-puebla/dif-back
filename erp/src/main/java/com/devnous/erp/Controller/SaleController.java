@@ -18,15 +18,15 @@ public class SaleController {
     @Qualifier("saleService")
     SaleService saleService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<SalesHeader>> getAllActiveSalesHeaders(@PathVariable("idCompany") int idCompany) {
-        List<SalesHeader> salesHeaders = saleService.readAllActiveSalesHeader(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<SalesHeader>> getAllActiveSalesHeaders() {
+        List<SalesHeader> salesHeaders = saleService.readAllActiveSalesHeader();
         return new ResponseEntity<>(salesHeaders, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<SalesHeader>> getAllRemovedSalesHeaders(@PathVariable("idCompany") int idCompany) {
-        List<SalesHeader> salesHeaders = saleService.readAllRemovedSalesHeader(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<SalesHeader>> getAllRemovedSalesHeaders() {
+        List<SalesHeader> salesHeaders = saleService.readAllRemovedSalesHeader();
         return new ResponseEntity<>(salesHeaders, HttpStatus.OK);
     }
 
@@ -61,7 +61,7 @@ public class SaleController {
     }
 
     @GetMapping("/isValidFolio")
-    public boolean isValidFolio(@RequestParam("folio") String folio, @RequestParam("series") String series, @RequestParam("idCompany") Integer idCompany) {
-        return saleService.isAValidFolioAndSeries(folio, series, idCompany);
+    public boolean isValidFolio(@RequestParam("folio") String folio, @RequestParam("series") String series) {
+        return saleService.isAValidFolioAndSeries(folio, series);
     }
 }

@@ -12,9 +12,9 @@ public interface QuotationService {
 
     Quotation readQuotation(int id) throws ResourceNotFoundException;
 
-    List<Quotation> readAllActiveQuotation(int idCompany);
+    List<Quotation> readAllActiveQuotations();
 
-    List<Quotation> readAllRemovedQuotation(int idCompany);
+    List<Quotation> readAllRemovedQuotations();
 
     void updateQuotation(Quotation quotation) throws ResourceNotFoundException;
 

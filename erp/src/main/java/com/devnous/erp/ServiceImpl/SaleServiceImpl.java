@@ -45,14 +45,14 @@ public class SaleServiceImpl implements SaleService {
         if (salesHeader.getFolio() == null || salesHeader.getFolio().isEmpty()) {
             String lastFolio = ""; //we need to obtain the last folio of a series.
             try {
-                lastFolio = saleRepository.findTopBySeriesAndIdCompany(salesHeader.getSeries(), salesHeader.getIdCompany()).getFolio();
+                lastFolio = saleRepository.findTopBySeries(salesHeader.getSeries()).getFolio();
             } catch (Exception e) {
                 //nothing to do
                 System.out.println(e);
             }
             salesHeader.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        SalesHeader exist = saleRepository.findByFolioAndSeriesAndIdCompany(salesHeader.getFolio(), salesHeader.getSeries(), salesHeader.getIdCompany());
+        SalesHeader exist = saleRepository.findByFolioAndSeries(salesHeader.getFolio(), salesHeader.getSeries());
         if (exist == null) {
             salesHeader.setDate(new Date(System.currentTimeMillis()));
             salesHeader.setStatus(1);
@@ -121,13 +121,13 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public List<SalesHeader> readAllActiveSalesHeader(int idCompany) {
-        return saleRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<SalesHeader> readAllActiveSalesHeader() {
+        return saleRepository.findByStatus(1);
     }
 
     @Override
-    public List<SalesHeader> readAllRemovedSalesHeader(int idCompany) {
-        return saleRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<SalesHeader> readAllRemovedSalesHeader() {
+        return saleRepository.findByStatus(0);
     }
 
     @Override
@@ -172,9 +172,9 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override //validate is the folio doesnt exist
-    public boolean isAValidFolioAndSeries(String folio, String series, int idCompany) {
+    public boolean isAValidFolioAndSeries(String folio, String series) {
         boolean flag;
-        flag = saleRepository.findByFolioAndSeriesAndIdCompany(folio, series, idCompany) != null;
+        flag = saleRepository.findByFolioAndSeries(folio, series) != null;
         return flag;
     }
 
@@ -183,7 +183,6 @@ public class SaleServiceImpl implements SaleService {
         Transaction transaction;
         transaction = new Transaction();
         transaction.setStatus(1);
-        transaction.setIdCompany(salesHeader.getIdCompany());
         transaction.setIdTransaction(salesHeader.getId());
         transaction.setItem(salesDetail.getItem());
         transaction.setWarehouse(salesHeader.getWarehouse());

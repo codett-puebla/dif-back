@@ -32,13 +32,13 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public List<Staff> readAllActiveStaff(int idCompany) {
-        return staffRepository.findByStatusAndIdCompany(1,idCompany);
+    public List<Staff> readAllActiveStaff() {
+        return staffRepository.findByStatus(1);
     }
 
     @Override
-    public List<Staff> readAllRemovedStaff(int idCompany) {
-        return staffRepository.findByStatusAndIdCompany(0,idCompany);
+    public List<Staff> readAllRemovedStaff() {
+        return staffRepository.findByStatus(0);
     }
 
     @Override

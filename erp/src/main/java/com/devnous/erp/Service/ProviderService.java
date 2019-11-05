@@ -10,9 +10,9 @@ public interface ProviderService {
 
     Provider readProvider(int id) throws ResourceNotFoundException;
 
-    List<Provider> readAllActiveProvider(int idCompany);
+    List<Provider> readAllActiveProvider();
 
-    List<Provider> readAllRemovedProvider(int idCompany);
+    List<Provider> readAllRemovedProvider();
 
     void updateProvider(Provider provider) throws ResourceNotFoundException;
 

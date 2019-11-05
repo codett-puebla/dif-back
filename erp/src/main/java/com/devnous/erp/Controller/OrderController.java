@@ -18,15 +18,15 @@ public class OrderController {
     @Qualifier("orderService")
     OrderService orderService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Order>> getAllActiveOrders(@PathVariable("idCompany") int idCompany) {
-        List<Order> orders = orderService.readAllActiveOrder(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Order>> getAllActiveOrders() {
+        List<Order> orders = orderService.readAllActiveOrder();
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Order>> getAllRemovedOrders(@PathVariable("idCompany") int idCompany) {
-        List<Order> orders = orderService.readAllRemovedOrder(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Order>> getAllRemovedOrders() {
+        List<Order> orders = orderService.readAllRemovedOrder();
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 

@@ -23,16 +23,16 @@ public class ClientController {
     ClientService clientService;
 
     @ApiOperation("Obtener todos los clientes activos")
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Client>> getAllActiveClients(@PathVariable("idCompany") int idCompany) {
-        List<Client> clients = clientService.readAllActiveClient(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Client>> getAllActiveClients() {
+        List<Client> clients = clientService.readAllActiveClient();
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 
     @ApiOperation("Obtener todos los clientes removidos")
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Client>> getAllRemovedClients(@PathVariable("idCompany") int idCompany) {
-        List<Client> clients = clientService.readAllRemovedClient(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Client>> getAllRemovedClients() {
+        List<Client> clients = clientService.readAllRemovedClient();
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 

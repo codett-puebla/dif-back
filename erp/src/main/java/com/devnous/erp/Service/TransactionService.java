@@ -10,9 +10,9 @@ public interface TransactionService {
 
     Transaction readTransaction(int id) throws ResourceNotFoundException;
 
-    List<Transaction> readAllActiveTransaction(int idCompany);
+    List<Transaction> readAllActiveTransaction();
 
-    List<Transaction> readAllRemovedTransaction(int idCompany);
+    List<Transaction> readAllRemovedTransaction();
 
     void updateTransaction(Transaction transaction) throws ResourceNotFoundException;
 

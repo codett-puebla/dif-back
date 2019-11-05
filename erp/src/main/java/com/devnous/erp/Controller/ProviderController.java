@@ -18,15 +18,15 @@ public class ProviderController {
     @Qualifier("providerService")
     ProviderService providerService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Provider>> getAllActiveProviders(@PathVariable("idCompany") int idCompany) {
-        List<Provider> providers = providerService.readAllActiveProvider(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Provider>> getAllActiveProviders() {
+        List<Provider> providers = providerService.readAllActiveProvider();
         return new ResponseEntity<>(providers, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Provider>> getAllRemovedProviders(@PathVariable("idCompany") int idCompany) {
-        List<Provider> providers = providerService.readAllRemovedProvider(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Provider>> getAllRemovedProviders() {
+        List<Provider> providers = providerService.readAllRemovedProvider();
         return new ResponseEntity<>(providers, HttpStatus.OK);
     }
 

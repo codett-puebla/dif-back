@@ -31,14 +31,14 @@ public class OrderServiceImpl implements OrderService {
         if (order.getFolio() == null || order.getFolio().isEmpty()) {
             String lastFolio = ""; //we need to obtain the last folio of a series.
             try {
-                lastFolio = orderRepository.findTopBySeriesAndIdCompany(order.getSeries(), order.getIdCompany()).getFolio();
+                lastFolio = orderRepository.findTopBySeries(order.getSeries()).getFolio();
             } catch (Exception e) {
                 //nothing to do
                 System.out.println(e);
             }
             order.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        Order exist = orderRepository.findByFolioAndSeriesAndIdCompany(order.getFolio(), order.getSeries(), order.getIdCompany());
+        Order exist = orderRepository.findByFolioAndSeries(order.getFolio(), order.getSeries());
         if (exist == null) {
             order.setDate(new Date(System.currentTimeMillis()));
             orderRepository.save(order);
@@ -57,13 +57,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> readAllActiveOrder(int idCompany) {
-        return orderRepository.findByStatusAndIdCompany(1, idCompany);
+    public List<Order> readAllActiveOrder() {
+        return orderRepository.findByStatus(1);
     }
 
     @Override
-    public List<Order> readAllRemovedOrder(int idCompany) {
-        return orderRepository.findByStatusAndIdCompany(0, idCompany);
+    public List<Order> readAllRemovedOrder() {
+        return orderRepository.findByStatus(0);
     }
 
     @Override

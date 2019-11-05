@@ -30,9 +30,6 @@ public class Departures implements Serializable {
     private String folio;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
 
     //relaciones y fk
@@ -77,14 +74,6 @@ public class Departures implements Serializable {
 
     public void setFolio(String folio) {
         this.folio = folio;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

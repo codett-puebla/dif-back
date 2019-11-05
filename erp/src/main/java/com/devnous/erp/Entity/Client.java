@@ -28,9 +28,6 @@ public class Client implements Serializable {
     private String rfc;
     @NotNull
     @Column
-    private int idCompany;
-    @NotNull
-    @Column
     private int status;
 
     public int getId() {
@@ -89,14 +86,6 @@ public class Client implements Serializable {
         this.rfc = rfc;
     }
 
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
-    }
-
     public int getStatus() {
         return status;
     }
@@ -115,7 +104,6 @@ public class Client implements Serializable {
                 ", email='" + email + '\'' +
                 ", useCFID='" + useCFID + '\'' +
                 ", rfc='" + rfc + '\'' +
-                ", idCompany=" + idCompany +
                 ", status=" + status +
                 '}';
     }

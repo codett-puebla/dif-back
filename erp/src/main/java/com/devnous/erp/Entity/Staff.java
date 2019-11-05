@@ -27,9 +27,6 @@ public class Staff implements Serializable {
     private String rfc;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
 
     @OneToMany(mappedBy = "staff")
@@ -81,14 +78,6 @@ public class Staff implements Serializable {
 
     public void setRfc(String rfc) {
         this.rfc = rfc;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

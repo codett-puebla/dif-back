@@ -37,9 +37,6 @@ public class Transaction implements Serializable {
     private String reason;
     @Column
     @NotNull
-    private int idCompany;
-    @Column
-    @NotNull
     private int status;
     @Column
     @NotNull
@@ -82,14 +79,6 @@ public class Transaction implements Serializable {
 
     public void setReason(String reason) {
         this.reason = reason;
-    }
-
-    public int getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(int idCompany) {
-        this.idCompany = idCompany;
     }
 
     public int getStatus() {

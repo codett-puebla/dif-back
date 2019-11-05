@@ -18,15 +18,15 @@ public class InventoryController{
     @Qualifier("inventoryService")
     InventoryService inventoryService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Inventory>> getAllActiveInventories(@PathVariable("idCompany") int idCompany) {
-        List<Inventory> inventories = inventoryService.readAllActiveInventory(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Inventory>> getAllActiveInventories() {
+        List<Inventory> inventories = inventoryService.readAllActiveInventory();
         return new ResponseEntity<>(inventories, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Inventory>> getAllRemovedInventories(@PathVariable("idCompany") int idCompany) {
-        List<Inventory> inventories = inventoryService.readAllRemovedInventory(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Inventory>> getAllRemovedInventories() {
+        List<Inventory> inventories = inventoryService.readAllRemovedInventory();
         return new ResponseEntity<>(inventories, HttpStatus.OK);
     }
 

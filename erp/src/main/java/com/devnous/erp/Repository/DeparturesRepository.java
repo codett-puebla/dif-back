@@ -12,12 +12,12 @@ import java.util.List;
 public interface DeparturesRepository extends JpaRepository<Departures, Serializable> {
     Departures findById(int id);
 
-    List<Departures> findByStatusAndIdCompany(int status, int idCompany);
+    List<Departures> findByStatus(int status);
 
     Departures findByIdAndStatus(int id, int status);
 
-    @Query(value = "Select * from Departures as d where d.folio LIKE  '%-%-%' AND d.series = ?1 AND d.idCompany = ?2 ORDER BY d.id DESC LIMIT 1", nativeQuery = true)
-    Departures findTopBySeriesAndIdCompany(String series, int idCompany);
+    @Query(value = "Select * from Departures as d where d.folio LIKE  '%-%-%' AND d.series = ?1 ORDER BY d.id DESC LIMIT 1", nativeQuery = true)
+    Departures findTopBySeries(String series);
 
-    Departures findByFolioAndSeriesAndIdCompany(String folio, String series, int idCompany);
+    Departures findByFolioAndSeries(String folio, String series);
 }

@@ -18,15 +18,15 @@ public class WarehouseController {
     @Qualifier("warehouseService")
     WarehouseService warehouseService;
 
-    @GetMapping("/active/company={idCompany}")
-    public ResponseEntity<List<Warehouse>> getAllActiveWarehouses(@PathVariable("idCompany") int idCompany) {
-        List<Warehouse> warehouses = warehouseService.readAllActiveWarehouse(idCompany);
+    @GetMapping("/active")
+    public ResponseEntity<List<Warehouse>> getAllActiveWarehouses() {
+        List<Warehouse> warehouses = warehouseService.readAllActiveWarehouse();
         return new ResponseEntity<>(warehouses, HttpStatus.OK);
     }
 
-    @GetMapping("/removed/company={idCompany}")
-    public ResponseEntity<List<Warehouse>> getAllRemovedWarehouses(@PathVariable("idCompany") int idCompany) {
-        List<Warehouse> warehouses = warehouseService.readAllRemovedWarehouse(idCompany);
+    @GetMapping("/removed")
+    public ResponseEntity<List<Warehouse>> getAllRemovedWarehouses() {
+        List<Warehouse> warehouses = warehouseService.readAllRemovedWarehouse();
         return new ResponseEntity<>(warehouses, HttpStatus.OK);
     }
 

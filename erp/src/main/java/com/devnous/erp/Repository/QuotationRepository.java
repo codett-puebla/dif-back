@@ -12,12 +12,12 @@ import java.util.List;
 public interface QuotationRepository extends JpaRepository<Quotation, Serializable> {
     Quotation findById(int id);
 
-    List<Quotation> findByStatusAndIdCompany(int status, int idCompany);
+    List<Quotation> findByStatus(int status);
 
-    @Query(value = "Select * from Quotation as q where q.folio LIKE  '%-%-%' AND q.series = ?1 AND q.idCompany = ?2 ORDER BY q.id DESC LIMIT 1", nativeQuery = true)
-    Quotation findTopBySeriesAndIdCompany(String series, int idCompany);
+    @Query(value = "Select * from Quotation as q where q.folio LIKE  '%-%-%' AND q.series = ?1 ORDER BY q.id DESC LIMIT 1", nativeQuery = true)
+    Quotation findTopBySeries(String series);
 
-    Quotation findByFolioAndSeriesAndIdCompany(String folio, String series, int idCompany);
+    Quotation findByFolioAndSeries(String folio, String series);
 
     Quotation findByIdAndStatus(int id, int status);
 }

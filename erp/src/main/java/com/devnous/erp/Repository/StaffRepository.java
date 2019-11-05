@@ -11,5 +11,5 @@ import java.util.List;
 public interface StaffRepository extends JpaRepository<Staff, Serializable> {
     Staff findById(int id);
 
-    List<Staff> findByStatusAndIdCompany(int status, int idCompany);
+    List<Staff> findByStatus(int status);
 }

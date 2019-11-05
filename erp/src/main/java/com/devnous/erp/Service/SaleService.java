@@ -13,9 +13,9 @@ public interface SaleService {
 
     SalesHeader readSalesHeader(int id) throws ResourceNotFoundException;
 
-    List<SalesHeader> readAllActiveSalesHeader(int idCompany);
+    List<SalesHeader> readAllActiveSalesHeader();
 
-    List<SalesHeader> readAllRemovedSalesHeader(int idCompany);
+    List<SalesHeader> readAllRemovedSalesHeader();
 
     void updateSalesHeader(SalesHeader salesHeader) throws ResourceNotFoundException;
 
@@ -23,5 +23,5 @@ public interface SaleService {
 
     void softDeleteSales(int id) throws ResourceNotFoundException;
 
-    boolean isAValidFolioAndSeries(String folio, String series, int idCompany);
+    boolean isAValidFolioAndSeries(String folio, String series);
 }

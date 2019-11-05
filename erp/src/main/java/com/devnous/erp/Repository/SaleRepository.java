@@ -12,12 +12,12 @@ import java.util.List;
 public interface SaleRepository extends JpaRepository<SalesHeader, Serializable> {
     SalesHeader findById(int id);
 
-    List<SalesHeader> findByStatusAndIdCompany(int status, int idCompany);
+    List<SalesHeader> findByStatus(int status);
 
-    @Query(value = "Select * from SalesHeader as s where s.folio LIKE  '%-%-%' AND s.series = ?1 AND s.idCompany = ?2 ORDER BY s.id DESC LIMIT 1", nativeQuery = true)
-    SalesHeader findTopBySeriesAndIdCompany(String series, int idCompany);
+    @Query(value = "Select * from SalesHeader as s where s.folio LIKE  '%-%-%' AND s.series = ?1 ORDER BY s.id DESC LIMIT 1", nativeQuery = true)
+    SalesHeader findTopBySeries(String series);
 
-    SalesHeader findByFolioAndSeriesAndIdCompany(String folio, String series, int idCompany);
+    SalesHeader findByFolioAndSeries(String folio, String series);
 
     SalesHeader findByIdAndStatus(int id, int status);
 }
