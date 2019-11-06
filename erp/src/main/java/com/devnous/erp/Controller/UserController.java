@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,11 +19,27 @@ public class UserController {
     @Qualifier("userService")
     UserService userService;
 
-     @GetMapping("/all")
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> users = userService.readAllActiveUser();
         return new ResponseEntity<>(users, HttpStatus.OK);
-     }
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUser(@PathVariable("id") int id){
+        return new ResponseEntity<User>(userService.readUser(id), HttpStatus.OK);
+    }
+
+    @PutMapping(path = "", consumes = "application/json")
+    public ResponseEntity<String> updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<String> deleteSoftUser(@PathVariable("id") int id) {
+        userService.softDeleteUser(id);
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
 
 }
