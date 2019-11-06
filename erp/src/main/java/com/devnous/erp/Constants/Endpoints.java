@@ -23,4 +23,5 @@ public class Endpoints {
     public static final String TRANSACTION = "/transaction";
     public static final String ENTRY = "/entry";
     public static final String ENTRY_DETAIL = "/entry_detail";
+    public static final String USER = "/user";
 }

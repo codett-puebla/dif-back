@@ -1,10 +1,11 @@
 package com.devnous.erp.Entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "district")
-public class District {
+public class District  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

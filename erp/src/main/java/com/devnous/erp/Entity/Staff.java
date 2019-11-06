@@ -29,6 +29,10 @@ public class Staff implements Serializable {
     @NotNull
     private int status;
 
+    @ManyToOne
+    @JoinColumn(name = "idUser", referencedColumnName="id")
+    private User user;
+
     @OneToMany(mappedBy = "staff")
     private List<Departures> departures;
 
@@ -86,5 +90,13 @@ public class Staff implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public User getUser(){
+        return user;
     }
 }

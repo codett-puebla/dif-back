@@ -56,6 +56,11 @@ public class Transaction implements Serializable {
     @JoinColumn(name = "idWarehouse")
     private Warehouse warehouse;
 
+    @ManyToOne
+    @JoinColumn(name = "idUser", referencedColumnName="id")
+    @NotNull
+    private User user;
+
 
     public int getId() {
         return id;
@@ -127,5 +132,13 @@ public class Transaction implements Serializable {
 
     public void setIdTransaction(int idTransaction) {
         this.idTransaction = idTransaction;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public User getUser(){
+        return user;
     }
 }
