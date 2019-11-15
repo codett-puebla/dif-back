@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/deverp?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC #Maquina Hugo
     url: jdbc:mysql://localhost:3306/dif_control?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC #Maquina Hugo
-    username: alex
+    username: root
     password: Conejo321.
  jpa:
     show-sql: true

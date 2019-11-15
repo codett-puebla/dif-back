@@ -30,6 +30,12 @@ public class UserController {
         return new ResponseEntity<User>(userService.readUser(id), HttpStatus.OK);
     }
 
+    @PostMapping("/new")
+    public ResponseEntity<String> insertUser(@RequestBody User user) {
+        userService.createUser(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PutMapping(path = "", consumes = "application/json")
     public ResponseEntity<String> updateUser(@RequestBody User user) {
         userService.updateUser(user);
