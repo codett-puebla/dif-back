@@ -13,6 +13,7 @@
 	<artifactId>erp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>platform</name>
+	<packaging>war</packaging>
 	<description>Proyecto ERP-devnous</description>
 
 	<properties>
