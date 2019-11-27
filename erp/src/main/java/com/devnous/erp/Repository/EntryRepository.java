@@ -17,7 +17,7 @@ public interface EntryRepository extends JpaRepository<Entry, Serializable> {
 
     List<Entry> findByStatus(int status);
 
-    @Query(value = "Select * from Entry as e where e.folio LIKE  '%-%-%' AND e.series = ?1 ORDER BY e.id DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "Select * from entry as e where e.folio LIKE  '%-%-%' AND e.series = ?1 ORDER BY e.id DESC LIMIT 1", nativeQuery = true)
     Entry findTopBySeries(String series);
 
     Entry findByFolioAndSeries(String folio, String series);

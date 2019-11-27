@@ -9,6 +9,7 @@ import com.devnous.erp.Exceptions.TransactionInterruptedException;
 import com.devnous.erp.Exceptions.UniqueAttributeException;
 import com.devnous.erp.Repository.EntryRepository;
 import com.devnous.erp.Repository.InventoryRepository;
+import com.devnous.erp.Repository.UserRepository;
 import com.devnous.erp.Service.EntryService;
 import com.devnous.erp.Service.HelperFolioService;
 import com.devnous.erp.Service.TransactionService;
@@ -39,6 +40,10 @@ public class EntryServiceImpl implements EntryService {
     @Qualifier("inventoryRepository")
     InventoryRepository inventoryRepository;
 
+    @Autowired
+    @Qualifier("userRepository")
+    UserRepository userRepository;
+
     @Override
     @SuppressWarnings("Duplicates")
     public void createEntry(Entry entry) throws UniqueAttributeException {
@@ -57,23 +62,21 @@ public class EntryServiceImpl implements EntryService {
             entry.setDate(new Date(System.currentTimeMillis()));
             entry.setStatus(1);
             List<Inventory> inventoriesUpdatables = new ArrayList<>();
-            boolean sucessful = true;
+            boolean successfull = true;
             int contDetails = 0;
             for (EntryDetail entryDetail : entry.getEntryDetails()) {
                 List<Inventory> inventories = inventoryRepository.findByItemIdAndWarehouseId(entryDetail.getItem().getId(), entry.getWarehouse().getId());
                 for (Inventory inventory : inventories) {
-                    if (inventory.getQuantity() >= entryDetail.getQuantity()) {
-                        inventory.setQuantity(inventory.getQuantity() - (entryDetail.getQuantity() * -1));
-                        inventoriesUpdatables.add(inventory);
-                        contDetails++;
-                        break;
-                    }
+                    inventory.setQuantity(inventory.getQuantity() + entryDetail.getQuantity());
+                    inventoriesUpdatables.add(inventory);
+                    contDetails++;
                 }
             }
             if (contDetails != entry.getEntryDetails().size()) {
-                sucessful = false;
+                successfull = false;
             }
-            if (sucessful) {
+
+            if (successfull) {
                 entryRepository.save(entry);
 
                 for (Inventory inventory : inventoriesUpdatables) {
@@ -82,8 +85,9 @@ public class EntryServiceImpl implements EntryService {
                 Transaction transaction = null; //creamos las transacciones de la venta
                 for (EntryDetail entryDetail : entry.getEntryDetails()) {
                     transaction = makeTransaction(entry, entryDetail);
-                    transaction.setQuantity(entryDetail.getQuantity() * -1);
+                    transaction.setQuantity(entryDetail.getQuantity());
                     transaction.setTypeTransaction(Transaction.ENTRADA);
+                    transaction.setUser(userRepository.findById(entry.getId()));
                     transaction.setReason(Transaction.REASON_ENTRADA_INVENTARIO);
 
                     transactionService.createTransaction(transaction);
@@ -93,7 +97,7 @@ public class EntryServiceImpl implements EntryService {
                 throw new TransactionInterruptedException();
             }
         } else {
-            throw new UniqueAttributeException("[series,folios,idCompany]");
+            throw new UniqueAttributeException("[series,folios]");
         }
     }
 
