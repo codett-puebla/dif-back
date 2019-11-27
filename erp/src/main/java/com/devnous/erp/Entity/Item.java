@@ -26,10 +26,10 @@ public class Item implements Serializable {
     private Integer unitMeasureSale;
     @Column
     private Integer unitMeasurePurchase;
-    @Column
-    private Integer idKeySAT;
-    @Column
-    private Integer idUnitMeasureSAT;
+//    @Column
+//    private Integer idKeySAT;
+//    @Column
+//    private Integer idUnitMeasureSAT;
     @Column
     private String image; //path de la imagen
     @Column
@@ -48,7 +48,7 @@ public class Item implements Serializable {
     @NotNull
     private int status;
 
-    @OneToMany(mappedBy = "item", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "item", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Inventory> inventories;
 
     public int getId() {
@@ -91,21 +91,21 @@ public class Item implements Serializable {
         this.unitMeasurePurchase = unitMeasurePurchase;
     }
 
-    public Integer getIdKeySAT() {
-        return idKeySAT;
-    }
-
-    public void setIdKeySAT(Integer idKeySAT) {
-        this.idKeySAT = idKeySAT;
-    }
-
-    public Integer getIdUnitMeasureSAT() {
-        return idUnitMeasureSAT;
-    }
-
-    public void setIdUnitMeasureSAT(Integer idUnitMeasureSAT) {
-        this.idUnitMeasureSAT = idUnitMeasureSAT;
-    }
+//    public Integer getIdKeySAT() {
+//        return idKeySAT;
+//    }
+//
+//    public void setIdKeySAT(Integer idKeySAT) {
+//        this.idKeySAT = idKeySAT;
+//    }
+//
+//    public Integer getIdUnitMeasureSAT() {
+//        return idUnitMeasureSAT;
+//    }
+//
+//    public void setIdUnitMeasureSAT(Integer idUnitMeasureSAT) {
+//        this.idUnitMeasureSAT = idUnitMeasureSAT;
+//    }
 
     public String getImage() {
         return image;

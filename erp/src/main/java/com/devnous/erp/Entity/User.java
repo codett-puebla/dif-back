@@ -1,5 +1,7 @@
 package com.devnous.erp.Entity;
 
+import org.checkerframework.common.aliasing.qual.Unique;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -20,6 +22,7 @@ public class User implements Serializable {
 
     @NotNull
     @Column
+    @Unique
     private String username;
 
     @NotNull

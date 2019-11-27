@@ -23,6 +23,7 @@ public class ClientController {
     ClientService clientService;
 
     @ApiOperation("Obtener todos los clientes activos")
+    @CrossOrigin(origins = "*")
     @GetMapping("/active")
     public ResponseEntity<List<Client>> getAllActiveClients() {
         List<Client> clients = clientService.readAllActiveClient();
@@ -30,6 +31,7 @@ public class ClientController {
     }
 
     @ApiOperation("Obtener todos los clientes removidos")
+    @CrossOrigin(origins = "*")
     @GetMapping("/removed")
     public ResponseEntity<List<Client>> getAllRemovedClients() {
         List<Client> clients = clientService.readAllRemovedClient();
@@ -37,6 +39,7 @@ public class ClientController {
     }
 
     @ApiOperation("Obtiene un cliente por Id")
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClient(@PathVariable("id") int id) {
         Client client = clientService.readClient(id);
@@ -44,6 +47,7 @@ public class ClientController {
     }
 
     @ApiOperation("Insertar un cliente")
+    @CrossOrigin(origins = "*")
     @PostMapping("/new")
     public ResponseEntity<String> insertClient(@RequestBody Client client) {
         clientService.createClient(client);
@@ -51,6 +55,7 @@ public class ClientController {
     }
 
     @ApiOperation("Elimina un cliente(cambio de status)")
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteSoftClient(@PathVariable("id") int id) {
         clientService.softDeleteClient(id);
@@ -58,6 +63,7 @@ public class ClientController {
     }
 
     @ApiOperation("Actualiza un cliente")
+    @CrossOrigin(origins = "*")
     @PutMapping(path = "", consumes = "application/json")
     public ResponseEntity<String> updateClient(@RequestBody Client client) {
         clientService.updateClient(client);
@@ -65,6 +71,7 @@ public class ClientController {
     }
 
     @ApiOperation("Elimina un cliente de la BD")
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/hard={id}")
     public ResponseEntity<String> deleteClient(@PathVariable("id") int id) {
         clientService.deleteClient(id);
