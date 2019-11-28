@@ -39,7 +39,7 @@ public class Entry implements Serializable {
     @NotNull
     private Warehouse warehouse;
 
-    @OneToMany(mappedBy = "entry", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "entry", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<EntryDetail> entryDetails;
 
     public int getId() {

@@ -87,7 +87,7 @@ public class EntryServiceImpl implements EntryService {
                     transaction = makeTransaction(entry, entryDetail);
                     transaction.setQuantity(entryDetail.getQuantity());
                     transaction.setTypeTransaction(Transaction.ENTRADA);
-                    transaction.setUser(userRepository.findById(entry.getId()));
+                    transaction.setUser(userRepository.findById(entry.getIdUser()));
                     transaction.setReason(Transaction.REASON_ENTRADA_INVENTARIO);
 
                     transactionService.createTransaction(transaction);
@@ -153,6 +153,7 @@ public class EntryServiceImpl implements EntryService {
                 transaction.setQuantity(entrysDetail.getQuantity());
                 transaction.setTypeTransaction(Transaction.SALIDA);
                 transaction.setReason(Transaction.REASON_SALIDA_INVENTARIO);
+                transaction.setUser(userRepository.findById(entry.getIdUser()));
 
                 transactionService.createTransaction(transaction);
             }

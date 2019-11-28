@@ -33,15 +33,22 @@ public class Departures implements Serializable {
     private int status;
 
     //relaciones y fk
-    @ManyToOne
-    @JoinColumn(name = "idStaff", referencedColumnName = "id")
-    private Staff staff;
+//    @ManyToOne
+//    @JoinColumn(name = "idStaff", referencedColumnName = "id")
+//    private Staff staff;
+
+    @Column
+    private String staff;
+
+    @Column
+    @NotNull
+    private int idUser;
 
     @ManyToOne
     @JoinColumn(name = "idWarehouse", referencedColumnName = "id")
     private Warehouse warehouse;
 
-    @OneToMany(mappedBy = "departures", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "departures", cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<DepartureDetail> departureDetails;
 
     public int getId() {
@@ -84,12 +91,28 @@ public class Departures implements Serializable {
         this.status = status;
     }
 
-    public Staff getStaff() {
+//    public Staff getStaff() {
+//        return staff;
+//    }
+//
+//    public void setStaff(Staff staff) {
+//        this.staff = staff;
+//    }
+//
+    public String getStaff() {
         return staff;
     }
 
-    public void setStaff(Staff staff) {
+    public void setStaff(String staff) {
         this.staff = staff;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
 

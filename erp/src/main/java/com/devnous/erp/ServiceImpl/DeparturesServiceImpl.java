@@ -9,6 +9,7 @@ import com.devnous.erp.Exceptions.TransactionInterruptedException;
 import com.devnous.erp.Exceptions.UniqueAttributeException;
 import com.devnous.erp.Repository.DeparturesRepository;
 import com.devnous.erp.Repository.InventoryRepository;
+import com.devnous.erp.Repository.UserRepository;
 import com.devnous.erp.Service.DeparturesService;
 import com.devnous.erp.Service.HelperFolioService;
 import com.devnous.erp.Service.TransactionService;
@@ -38,6 +39,10 @@ public class DeparturesServiceImpl implements DeparturesService {
     @Autowired
     @Qualifier("inventoryRepository")
     InventoryRepository inventoryRepository;
+
+    @Autowired
+    @Qualifier("userRepository")
+    UserRepository userRepository;
 
     @Override
     @SuppressWarnings("Duplicates")
@@ -85,6 +90,7 @@ public class DeparturesServiceImpl implements DeparturesService {
                     transaction.setQuantity(departuresDetail.getQuantity());
                     transaction.setTypeTransaction(Transaction.SALIDA);
                     transaction.setReason(Transaction.REASON_SALIDA_INVENTARIO);
+                    transaction.setUser(userRepository.findById(departures.getIdUser()));
 
                     transactionService.createTransaction(transaction);
                 }
@@ -148,6 +154,8 @@ public class DeparturesServiceImpl implements DeparturesService {
                 transaction.setQuantity(departureDetail.getQuantity() * -1);
                 transaction.setTypeTransaction(Transaction.ENTRADA);
                 transaction.setReason(Transaction.REASON_ENTRADA_INVENTARIO);
+                transaction.setUser(userRepository.findById(departure.getIdUser()));
+
 
                 transactionService.createTransaction(transaction);
             }

@@ -19,42 +19,49 @@ public class DeparturesController {
     @Qualifier("departuresService")
     DeparturesService departuresService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/active")
     public ResponseEntity<List<Departures>> getAllActiveDeparturess() {
         List<Departures> departures = departuresService.readAllActiveDepartures();
         return new ResponseEntity<>(departures, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/removed")
     public ResponseEntity<List<Departures>> getAllRemovedDeparturess() {
         List<Departures> departures = departuresService.readAllRemovedDepartures();
         return new ResponseEntity<>(departures, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<Departures> getDepartures(@PathVariable("id") int id) {
         Departures departures = departuresService.readDepartures(id);
         return new ResponseEntity<Departures>(departures, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/new")
     public ResponseEntity<String> insertDepartures(@RequestBody Departures departures) {
         departuresService.createDeparture(departures);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteSoftDepartures(@PathVariable("id") int id) {
         departuresService.softDeleteDeparture(id);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping(path = "", consumes = "application/json")
     public ResponseEntity<String> updateDepartures(@RequestBody Departures departures) {
         departuresService.updateDepartures(departures);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/hard={id}")
     public ResponseEntity<String> deleteDepartures(@PathVariable("id") int id) {
         departuresService.deleteDepartures(id);

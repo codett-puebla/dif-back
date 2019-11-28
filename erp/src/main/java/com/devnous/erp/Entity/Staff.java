@@ -33,8 +33,8 @@ public class Staff implements Serializable {
     @JoinColumn(name = "idUser", referencedColumnName="id")
     private User user;
 
-    @OneToMany(mappedBy = "staff")
-    private List<Departures> departures;
+//    @OneToMany(mappedBy = "staff")
+//    private List<Departures> departures;
 
     public int getId() {
         return id;
