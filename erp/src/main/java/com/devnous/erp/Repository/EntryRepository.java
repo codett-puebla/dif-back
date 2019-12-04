@@ -21,4 +21,6 @@ public interface EntryRepository extends JpaRepository<Entry, Serializable> {
     Entry findTopBySeries(String series);
 
     Entry findByFolioAndSeries(String folio, String series);
+
+    Entry findByFolio(String folio);
 }

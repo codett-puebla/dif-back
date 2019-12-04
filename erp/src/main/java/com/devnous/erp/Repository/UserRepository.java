@@ -12,6 +12,8 @@ import java.util.List;
 public interface UserRepository  extends JpaRepository<User, Serializable> {
 
     User findById(int id);
-    @Query(value = "Select * from user as u where u.status <= ?1 ORDER BY u.id", nativeQuery = true)
+    User findByUsername(String username);
+
+    @Query(value = "Select * from user as u where u.status >= ?1 ORDER BY u.id", nativeQuery = true)
     List<User> findByStatus(int status);
 }

@@ -10,6 +10,10 @@ public interface DeparturesService {
 
     Departures readDepartures(int id) throws ResourceNotFoundException;
 
+    Departures verifyFolio(String folio);
+
+    Boolean verifyQuantity(Integer quantity, Integer idItem);
+
     List<Departures> readAllActiveDepartures();
 
     List<Departures> readAllRemovedDepartures();

@@ -1,6 +1,7 @@
 package com.devnous.erp.Entity;
 
 import org.checkerframework.common.aliasing.qual.Unique;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -37,19 +38,19 @@ public class User implements Serializable {
     @Column(columnDefinition = "integer default 1")
     private int status;
 
-    @OneToMany(mappedBy = "user")
-    private List<Transaction> transactions;
+//    @OneToMany(mappedBy = "user")
+//    private List<Transaction> transactions;
 
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
-
-    @OneToOne(mappedBy = "user")
-    private Staff staff;
+//    @OneToOne(mappedBy = "user")
+//    private Staff staff;
+//
+//    public Staff getStaff() {
+//        return staff;
+//    }
+//
+//    public void setStaff(Staff staff) {
+//        this.staff = staff;
+//    }
 
     public int getId() {
         return id;

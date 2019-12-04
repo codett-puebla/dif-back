@@ -18,56 +18,48 @@ public class WarehouseController {
     @Qualifier("warehouseService")
     WarehouseService warehouseService;
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/active")
     public ResponseEntity<List<Warehouse>> getAllActiveWarehouses() {
         List<Warehouse> warehouses = warehouseService.readAllActiveWarehouse();
         return new ResponseEntity<>(warehouses, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/removed")
     public ResponseEntity<List<Warehouse>> getAllRemovedWarehouses() {
         List<Warehouse> warehouses = warehouseService.readAllRemovedWarehouse();
         return new ResponseEntity<>(warehouses, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<Warehouse> getWarehouse(@PathVariable("id") int id) {
         Warehouse departures = warehouseService.readWarehouse(id);
         return new ResponseEntity<Warehouse>(departures, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/new")
     public ResponseEntity<String> insertWarehouse(@RequestBody Warehouse warehouse) {
         warehouseService.createWarehouse(warehouse);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteSoftWarehouse(@PathVariable("id") int id) {
         warehouseService.softDeleteWarehouse(id);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @PutMapping(path = "", consumes = "application/json")
     public ResponseEntity<String> updateWarehouse(@RequestBody Warehouse warehouse) {
         warehouseService.updateWarehouse(warehouse);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/hard={id}")
     public ResponseEntity<String> deleteWarehouse(@PathVariable("id") int id) {
         warehouseService.deleteWarehouse(id);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/execute/transfer")
     public ResponseEntity<String> executeWarehouseTransfer(
             @RequestParam("idWarehouseOrigin") int idWarehouseOrigin,

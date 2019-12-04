@@ -11,6 +11,8 @@ public interface EntryService {
 
     Entry readEntrys(int id) throws ResourceNotFoundException;
 
+    Entry verifyFolio(String folio);
+
     List<Entry> readAllActiveEntrys();
 
     List<Entry> readAllRemovedEntrys();

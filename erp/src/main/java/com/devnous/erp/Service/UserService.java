@@ -18,5 +18,9 @@ public interface UserService {
 
     void deleteUser(int id);
 
+    User verifyEmail(String email);
+
+    User getUserForEmail(String email);
+
     void softDeleteUser(int id) throws ResourceNotFoundException;
 }

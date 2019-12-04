@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -18,32 +19,39 @@ public class UserController {
     @Autowired
     @Qualifier("userService")
     UserService userService;
-    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> users = userService.readAllActiveUser();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-    @CrossOrigin(origins = "*")
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") int id){
         return new ResponseEntity<User>(userService.readUser(id), HttpStatus.OK);
     }
-    @CrossOrigin(origins = "*")
+
+    @GetMapping("/verify")
+    public ResponseEntity<User> verifyExistEmail(@PathParam("email") String email){
+        return new ResponseEntity<User>(userService.verifyEmail(email), HttpStatus.OK);
+    }
+
+    @GetMapping("/getUserForEmail")
+    public ResponseEntity<User> getUserForEmail(@PathParam("email") String email){
+        return new ResponseEntity<User>(userService.getUserForEmail(email), HttpStatus.OK);
+    }
+
     @PostMapping("/new")
     public ResponseEntity<String> insertUser(@RequestBody User user) {
         userService.createUser(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "*")
     @PutMapping(path = "", consumes = "application/json")
     public ResponseEntity<String> updateUser(@RequestBody User user) {
         userService.updateUser(user);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteSoftUser(@PathVariable("id") int id) {
         userService.softDeleteUser(id);

@@ -23,6 +23,7 @@ import java.util.List;
 
 @Service("entryService")
 public class EntryServiceImpl implements EntryService {
+
     @Autowired
     @Qualifier("entryRepository")
     EntryRepository entryRepository;
@@ -57,7 +58,8 @@ public class EntryServiceImpl implements EntryService {
             }
             entry.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        Entry exist = entryRepository.findByFolioAndSeries(entry.getFolio(), entry.getSeries());
+//        Entry exist = entryRepository.findByFolioAndSeries(entry.getFolio(), entry.getSeries());
+        Entry exist = entryRepository.findByFolio(entry.getFolio());
         if (exist == null) {
             entry.setDate(new Date(System.currentTimeMillis()));
             entry.setStatus(1);
@@ -97,7 +99,7 @@ public class EntryServiceImpl implements EntryService {
                 throw new TransactionInterruptedException();
             }
         } else {
-            throw new UniqueAttributeException("[series,folios]");
+            throw new UniqueAttributeException("[folios]");
         }
     }
 
@@ -109,6 +111,11 @@ public class EntryServiceImpl implements EntryService {
             throw new ResourceNotFoundException(clase);
         }
         return entry;
+    }
+
+    @Override
+    public Entry verifyFolio(String folio) {
+        return entryRepository.findByFolio(folio);
     }
 
     @Override

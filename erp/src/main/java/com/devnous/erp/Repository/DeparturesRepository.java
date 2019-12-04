@@ -19,5 +19,5 @@ public interface DeparturesRepository extends JpaRepository<Departures, Serializ
     @Query(value = "Select * from Departures as d where d.folio LIKE  '%-%-%' AND d.series = ?1 ORDER BY d.id DESC LIMIT 1", nativeQuery = true)
     Departures findTopBySeries(String series);
 
-    Departures findByFolioAndSeries(String folio, String series);
+    Departures findByFolio(String folio);
 }

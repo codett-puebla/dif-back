@@ -18,7 +18,6 @@ public class TransactionController {
     @Qualifier("transactionService")
     TransactionService transactionService;
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/active")
     public ResponseEntity<List<Transaction>> getAllActiveTransactions() {
         List<Transaction> transactions = transactionService.readAllActiveTransaction();

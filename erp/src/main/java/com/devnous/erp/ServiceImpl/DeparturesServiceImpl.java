@@ -57,7 +57,7 @@ public class DeparturesServiceImpl implements DeparturesService {
             }
             departures.setFolio(helperFolioService.createNewFolio(lastFolio));
         }
-        Departures exist = departuresRepository.findByFolioAndSeries(departures.getFolio(), departures.getSeries());
+        Departures exist = departuresRepository.findByFolio(departures.getFolio());
         if (exist == null) {
             departures.setDate(new Date(System.currentTimeMillis()));
             departures.setStatus(1);
@@ -110,6 +110,16 @@ public class DeparturesServiceImpl implements DeparturesService {
             throw new ResourceNotFoundException(clase);
         }
         return departures;
+    }
+
+    @Override
+    public Departures verifyFolio(String folio) {
+        return departuresRepository.findByFolio(folio);
+    }
+
+    @Override
+    public Boolean verifyQuantity(Integer quantity, Integer idItem) {
+        return null;
     }
 
     @Override

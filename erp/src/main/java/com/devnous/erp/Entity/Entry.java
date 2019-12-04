@@ -1,6 +1,7 @@
 package com.devnous.erp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,8 @@ public class Entry implements Serializable {
     @Column
     private String series;
     @Column
+    @NotNull
+    @Unique
     private String folio;
     @Column
     @NotNull

@@ -6,8 +6,10 @@ import com.devnous.erp.Repository.UserRepository;
 import com.devnous.erp.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service("userService")
@@ -19,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
+        user.setCreate_at(new Date());
         userRepository.save(user);
     }
 
@@ -53,6 +58,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public User verifyEmail(String email) {
+        User user = userRepository.findByUsername(email);
+        return user;
+    }
+
+    @Override
+    public User getUserForEmail(String email) {
+        return userRepository.findByUsername(email);
     }
 
     @Override
